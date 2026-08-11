@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' https://cdn.sprig.com;
+        connect-src 'self' blob: data: https://api.sprig.com https://cdn.sprig.com https://*.mux.com https://storage.googleapis.com https://cdn.userleap.com;
+        img-src 'self' data: https://*.mux.com;
+        font-src 'self' data:;
+        style-src 'self' 'unsafe-inline';
+        media-src blob: https://*.mux.com;
+        worker-src 'self' blob:;
+      "
+    />
+    <title>Flow</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
