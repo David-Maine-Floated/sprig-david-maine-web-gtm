@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/sprig-david-maine/',
+  base: '/sprig-david-maine-web-gtm/',
   plugins: [react(), tailwindcss()],
 })

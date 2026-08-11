@@ -1,12 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useUser } from '../context/UserContext'
-import { useSprigInit } from '../hooks/useSprigInit'
 
 type LocationState = { from?: string } | null
 
 export function Login() {
-  useSprigInit()
   const { login } = useUser()
   const navigate = useNavigate()
   const location = useLocation()
@@ -15,16 +13,9 @@ export function Login() {
 
   const from = (location.state as LocationState)?.from ?? '/'
 
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const user = login({ name, email,})
-    window.Sprig('setUserId', user.cid);
-    window.Sprig('setEmail', user.email);
-    window.Sprig('setAttributes',{
-      "plan_type": 'Gold',
-      "role": 'Developer'
-    });
+    login({ name, email })
     navigate(from, { replace: true })
   }
 

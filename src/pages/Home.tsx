@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTasks, type Task, type TaskWhen } from '../context/TaskContext'
 import { useUser } from '../context/UserContext'
-import { useSprigInit } from '../hooks/useSprigInit'
 import { projects } from '../data/projects'
 
 const sections: { when: TaskWhen; label: string }[] = [
@@ -11,25 +10,11 @@ const sections: { when: TaskWhen; label: string }[] = [
 ]
 
 export function Home() {
-  useSprigInit()
   const { user } = useUser()
   const { tasks, addTask, toggleTask, deleteTask } = useTasks()
   const [title, setTitle] = useState('')
   const [when, setWhen] = useState<TaskWhen>('today')
   const [projectSlug, setProjectSlug] = useState('')
-
-  useEffect(() => {
-    console.log('HIHI')
-    window.Sprig('identifyAndTrack', {
-      eventName: 'home_page_loaded',
-      ...(user?.cid ? { userId: user.cid } : {}),
-    })
-    // Home page Event
-    window.Sprig('identifyAndTrack', {
-      eventName: 'home_page',
-      ...(user?.cid ? { userId: user.cid } : {}),
-    })
-  }, [])
 
   function handleAdd(e: React.FormEvent) {
     e.preventDefault()
@@ -40,27 +25,10 @@ export function Home() {
 
   function handleWhenChange(nextWhen: TaskWhen) {
     setWhen(nextWhen)
-    window.Sprig('identifyAndTrack', {
-      eventName: 'time_change',
-      ...(user?.cid ? { userId: user.cid } : {}),
-      properties: {
-        when: nextWhen,
-      },
-    })
   }
 
   function handleToggle(task: Task) {
     toggleTask(task.id)
-    if (!task.completed) {
-      // Indicates a task was completed.
-      window.Sprig('identifyAndTrack', {
-        eventName: 'task_completed',
-        ...(user?.cid ? { userId: user.cid } : {}),
-        properties: {
-          task_title: task.title,
-        },
-      })
-    }
   }
 
   const incomplete = tasks.filter((t) => !t.completed)

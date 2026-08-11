@@ -1,23 +1,9 @@
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 import { useTasks } from '../context/TaskContext'
-import { useUser } from '../context/UserContext'
-import { useSprigInit } from '../hooks/useSprigInit'
 
 export function Projects() {
-  useSprigInit()
   const { tasks } = useTasks()
-  const { user } = useUser()
-
-  function handleOpenProject(projectName: string) {
-    window.Sprig('identifyAndTrack', {
-      eventName: 'open_project',
-      ...(user?.cid ? { userId: user.cid } : {}),
-      properties: {
-        project_name: projectName,
-      },
-    })
-  }
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
@@ -31,7 +17,6 @@ export function Projects() {
             <Link
               key={project.slug}
               to={`/projects/${project.slug}`}
-              onClick={() => handleOpenProject(project.name)}
               className="rounded-lg border border-stone-200 bg-white p-4 transition-colors hover:border-stone-300 hover:bg-stone-50"
             >
               <div className="flex items-center gap-2">

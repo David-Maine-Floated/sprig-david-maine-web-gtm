@@ -1,23 +1,14 @@
-# Flow
+# Flow (Web + Google Tag Manager)
 
-A small task-management demo app (React + TypeScript + Vite) with the Sprig SDK installed.
+Clone of the Flow task-management demo for installing Sprig via **Google Tag Manager**.
+
+No Sprig or GTM is wired yet — plain React + Vite Flow app.
 
 ## Setup
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Copy the example env file and fill in your Sprig environment ID:
-
-```bash
-cp .env.example .env.development
-```
-
-```
-VITE_SPRIG_ENVIRONMENT_ID=your-sprig-environment-id
+npm run dev
 ```
 
 ## Scripts
@@ -26,5 +17,5 @@ VITE_SPRIG_ENVIRONMENT_ID=your-sprig-environment-id
 npm run dev       # start the dev server
 npm run build     # type-check and build for production
 npm run preview   # preview the production build locally
-npm run lint       # run oxlint
+npm run lint      # run oxlint
 ```

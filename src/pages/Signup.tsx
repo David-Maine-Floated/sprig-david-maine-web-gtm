@@ -1,12 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useUser } from '../context/UserContext'
-import { useSprigInit } from '../hooks/useSprigInit'
 
 type LocationState = { from?: string } | null
 
 export function Signup() {
-  useSprigInit()
   const { login } = useUser()
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,8 +15,7 @@ export function Signup() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const user = login({ name, email })
-    window.Sprig('setUserId', user.cid)
+    login({ name, email })
     navigate(from, { replace: true })
   }
 

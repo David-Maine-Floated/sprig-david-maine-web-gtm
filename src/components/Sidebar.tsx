@@ -37,7 +37,11 @@ export function Sidebar() {
         {user ? (
           <div className="flex items-center justify-between text-sm text-stone-600">
             <span className="truncate">{user.name}</span>
-            <button type="button" onClick={logout} className="font-medium text-stone-500 hover:text-stone-900">
+            <button
+              type="button"
+              onClick={logout}
+              className="font-medium text-stone-500 hover:text-stone-900"
+            >
               Log Out
             </button>
           </div>

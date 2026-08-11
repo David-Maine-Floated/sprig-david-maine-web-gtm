@@ -1,10 +1,8 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { projects } from '../data/projects'
 import { useTasks } from '../context/TaskContext'
-import { useSprigInit } from '../hooks/useSprigInit'
 
 export function ProjectDetail() {
-  useSprigInit()
   const { slug } = useParams()
   const project = projects.find((p) => p.slug === slug)
   const { tasks, toggleTask, deleteTask } = useTasks()
