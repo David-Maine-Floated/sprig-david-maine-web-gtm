@@ -8,16 +8,23 @@
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        script-src 'self';
-        connect-src 'self' blob: data:;
-        img-src 'self' data:;
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.sprig.com;
+        connect-src 'self' blob: data: https://www.googletagmanager.com https://api.sprig.com https://cdn.sprig.com https://*.mux.com https://storage.googleapis.com;
+        img-src 'self' data: https://www.googletagmanager.com https://*.mux.com;
         font-src 'self' data:;
         style-src 'self' 'unsafe-inline';
-        media-src blob:;
+        media-src blob: https://*.mux.com;
         worker-src 'self' blob:;
       "
     />
     <title>Flow</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KHQ6XH5T');</script>
+    <!-- End Google Tag Manager -->
   </head>
   <body>
     <div id="root"></div>
