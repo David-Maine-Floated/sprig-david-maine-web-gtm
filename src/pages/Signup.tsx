@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useUser } from '../context/UserContext'
+import { pushToDataLayer } from '../utils/dataLayer'
 
 type LocationState = { from?: string } | null
 
@@ -15,7 +16,15 @@ export function Signup() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    login({ name, email })
+    const user = login({ name, email })
+    pushToDataLayer({
+      event: 'sign_up',
+      userId: user.cid,
+      email: user.email,
+      name: user.name,
+      plan_type: 'Gold',
+      role: 'Developer',
+    })
     navigate(from, { replace: true })
   }
 

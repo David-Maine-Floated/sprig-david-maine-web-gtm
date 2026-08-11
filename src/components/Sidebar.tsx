@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useUser } from '../context/UserContext'
+import { pushToDataLayer } from '../utils/dataLayer'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -39,7 +40,10 @@ export function Sidebar() {
             <span className="truncate">{user.name}</span>
             <button
               type="button"
-              onClick={logout}
+              onClick={() => {
+                pushToDataLayer({ event: 'logout' })
+                logout()
+              }}
               className="font-medium text-stone-500 hover:text-stone-900"
             >
               Log Out
